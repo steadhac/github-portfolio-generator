@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carolina Steadham - Detailed Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .demo-banner {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .repo-grid {
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+        .repo-card {
+            padding: 2.5rem;
+        }
+        .repo-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+            color: #666;
+            flex-wrap: wrap;
+        }
+        .repo-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.3rem 0.6rem;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 12px;
+        }
+        .tech-icon {
+            width: 48px;
+            height: 48px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-banner">
+        <i class="fas fa-expand-alt"></i>
+        DETAILED VERSION - More information per repository
+    </div>
+    
+    <header>
+        <div class="container">
+            <h1 id="profile-name">Loading...</h1>
+            <p id="profile-bio">Loading...</p>
+            <div class="social-links">
+                <a id="github-link" href="#" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="stats">
+            <div class="stat-card">
+                <h3 id="repo-count">0</h3>
+                <p>Repositories</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="total-stars">0</h3>
+                <p>Total Stars</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="total-commits">0</h3>
+                <p>Commits (30d)</p>
+            </div>
+        </section>
+
+        <section class="repositories">
+            <h2>Featured Repositories</h2>
+            <div id="repo-grid" class="repo-grid">
+                <div class="loading">Loading repositories...</div>
+            </div>
+        </section>
+    </main>
+
+    <script src="demo-data.js"></script>
+    <script>
+        class GitHubPortfolioDetailed extends GitHubPortfolioDemo {
+            createRepoCard(repo) {
+                const techStack = this.getTechStack(repo.languages, repo.readmeContent);
+                const commits = DEMO_DATA.commitActivity[repo.name] || 0;
+                const langCount = Object.keys(repo.languages || {}).length;
+                
+                return `
+                    <div class="repo-card">
+                        <h3><a href="${repo.html_url}" target="_blank" class="repo-title">${repo.name}</a></h3>
+                        <p class="repo-description">${repo.description || this.generateSmartDescription(repo) || 'A software project'}</p>
+                        <div class="repo-stats">
+                            <div class="repo-stat" title="Last updated">
+                                <i class="fas fa-calendar"></i>
+                                <span>${this.formatDate(repo.updated_at)}</span>
+                            </div>
+                            ${repo.stargazers_count > 0 ? `
+                                <div class="repo-stat" title="GitHub stars">
+                                    <i class="fas fa-star"></i>
+                                    <span>${repo.stargazers_count}</span>
+                                </div>
+                            ` : `
+                                <div class="repo-stat" title="Recent commits">
+                                    <i class="fas fa-code-branch"></i>
+                                    <span>${commits} commits</span>
+                                </div>
+                            `}
+                            <div class="repo-stat" title="Programming languages">
+                                <i class="fas fa-layer-group"></i>
+                                <span>${langCount} ${langCount === 1 ? 'language' : 'languages'}</span>
+                            </div>
+                        </div>
+                        <div class="tech-stack">
+                            ${techStack}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            formatDate(dateString) {
+                const date = new Date(dateString);
+                const now = new Date();
+                const diffTime = Math.abs(now - date);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (diffDays < 7) return `${diffDays}d ago`;
+                if (diffDays < 30) return `${Math.ceil(diffDays / 7)}w ago`;
+                if (diffDays < 365) return `${Math.ceil(diffDays / 30)}mo ago`;
+                
+                return date.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'short'
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new GitHubPortfolioDetailed();
+        });
+    </script>
+</body>
+</html>
