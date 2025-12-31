@@ -98,17 +98,4 @@ MIT License
 
 ---
 
-
-## 👤 Author
-
-**Carolina Steadham**
-- GitHub: [@steadhac](https://github.com/steadhac)
-- LinkedIn: [Carolina Steadham](https://linkedin.com/in/carolinacsteadham)
-
----
-
-<div align="center">
-
-**⭐ Star this repo if you find it helpful!**
-
-Made with ❤️ and JavaScript
+**Made with 💜 by [steadhac](https://github.com/steadhac)**
