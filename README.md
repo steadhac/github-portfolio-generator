@@ -20,9 +20,6 @@ A modern, responsive portfolio page that automatically showcases your GitHub rep
 3. Select the branch and folder (usually `main` and `/root`).
 4. Your site will be live at `https://yourusername.github.io/your-portfolio`.
 
-### Netlify / Vercel
-- Use the "Deploy to Netlify" or "Deploy with Vercel" buttons in the README.
-- Or connect your repo directly on their dashboard.
 
 ## ✨ Features
 
@@ -63,8 +60,14 @@ github-portfolio-generator/
 ├── index.html # Main portfolio page
 ├── styles.css # Styling
 ├── script.js # Core logic
-├── demo-data.js # Demo mode data
-└── README.md # This file
+├── assets/ # Tech stack icons and images
+│ ├── testng.png
+│ ├── fastapi.png
+│ └── ... (other images)
+├── demo/ # Demo mode data and mock files
+│ ├── demo-data.js
+│ └── ... (other demo files)
+├── README.md # Project documentation
 ```
 
 ## 🔧 API Features
