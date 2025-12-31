@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carolina Steadham - GitHub Portfolio Demo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/devicon/2.15.1/devicon.min.css" />
+    <style>
+        .demo-banner {
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-banner i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-banner">
+        <i class="fas fa-flask"></i>
+        DEMO MODE - Using Static Data (No GitHub API Calls)
+    </div>
+    
+    <header>
+        <div class="container">
+            <h1 id="profile-name">Loading...</h1>
+            <p id="profile-bio">Loading...</p>
+            <div class="social-links">
+                <a id="github-link" href="#" target="_blank"><i class="fab fa-github"></i></a>
+                <a id="website-link" href="#" target="_blank" style="display: none;"><i class="fas fa-globe"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="stats">
+            <div class="stat-card">
+                <h3 id="repo-count">0</h3>
+                <p>Repositories</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="total-stars">0</h3>
+                <p>Total Stars</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="total-commits">0</h3>
+                <p>Commits (30d)</p>
+            </div>
+        </section>
+
+        <section class="repositories">
+            <h2>Featured Repositories</h2>
+            <div id="repo-grid" class="repo-grid">
+                <div class="loading">Loading repositories...</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Include demo data -->
+    <script src="demo-data.js"></script>
+    <!-- Include demo script -->
+    <script src="demo-script.js"></script>
+</body>
+</html>

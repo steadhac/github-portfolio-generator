@@ -1,0 +1,20 @@
+{
+  "name": "github-portfolio-generator",
+  "version": "1.0.0",
+  "description": "Beautiful GitHub portfolio generator with tech stack detection",
+  "main": "index.html",
+  "scripts": {
+    "start": "open index.html",
+    "deploy": "gh-pages -d ."
+  },
+  "keywords": ["github", "portfolio", "developer", "showcase"],
+  "author": "steadhac",
+  "license": "MIT",
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/steadhac/github-portfolio-generator"
+  }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carolina Steadham - Minimal Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .demo-banner {
+            background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .repo-card {
+            padding: 1.5rem;
+            text-align: left;
+        }
+        .repo-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .repo-description {
+            display: none;
+        }
+        .tech-stack {
+            justify-content: flex-start;
+            margin-top: 0.8rem;
+        }
+        .tech-icon {
+            width: 32px;
+            height: 32px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-banner">
+        <i class="fas fa-minus"></i>
+        MINIMAL VERSION - Just names and tech stacks
+    </div>
+    
+    <header>
+        <div class="container">
+            <h1 id="profile-name">Loading...</h1>
+            <p id="profile-bio">Loading...</p>
+            <div class="social-links">
+                <a id="github-link" href="#" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="stats">
+            <div class="stat-card">
+                <h3 id="repo-count">0</h3>
+                <p>Repositories</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="total-stars">0</h3>
+                <p>Total Stars</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="total-commits">0</h3>
+                <p>Commits (30d)</p>
+            </div>
+        </section>
+
+        <section class="repositories">
+            <h2>Featured Repositories</h2>
+            <div id="repo-grid" class="repo-grid">
+                <div class="loading">Loading repositories...</div>
+            </div>
+        </section>
+    </main>
+
+    <script src="demo-data.js"></script>
+    <script src="demo-script.js"></script>
+</body>
+</html>
