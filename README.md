@@ -11,9 +11,6 @@ A modern, responsive portfolio page that automatically showcases your GitHub rep
 4. Enable GitHub Pages in Settings > Pages
 5. Access at: `https://yourusername.github.io/your-portfolio`
 
-### Deploy Instantly
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository-url=https://github.com/steadhac/github-portfolio-generator)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/steadhac/github-portfolio-generator)
 
 ## 🚀 Deployment
 
