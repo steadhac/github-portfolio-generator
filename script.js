@@ -519,18 +519,16 @@ class GitHubPortfolio {
         }).join('');
     }
     
-        getTechStackBadges(languages, readmeContent) {
-        const langTech = Object.keys(languages || {}).slice(0, 3);
-        const readmeTech = this.extractTechFromReadme(readmeContent || '').slice(0, 3);
-        const allTech = [...new Set([...langTech, ...readmeTech])].slice(0, 5);
+    getTechStackBadges(languages, readmeContent) {
+        const langTech = Object.keys(languages || {}).slice(0, 5);  // Increased from 3
+        const readmeTech = this.extractTechFromReadme(readmeContent || '').slice(0, 5);  // Increased from 3
+        const allTech = [...new Set([...langTech, ...readmeTech])].slice(0, 8);  // Increased from 5
     
         if (allTech.length === 0) return '';
     
         return allTech.map(tech => {
             const techData = this.techStack[tech];
             if (techData && techData.badge) {
-                // Extract image URL and link URL from markdown badge
-                // Format: [![Name](image-url)](link-url)
                 const imageMatch = techData.badge.match(/!\[.*?\]\((.*?)\)/);
                 const linkMatch = techData.badge.match(/\]\((.*?)\)$/);
                 
