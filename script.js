@@ -25,8 +25,8 @@ class GitHubPortfolio {
             'Shell': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/bash/bash-original.svg', color: '#89E051' },
             'Express': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg', color: '#000000' },
             'Django': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/django/django-plain.svg', color: '#092E20' },
-            'FastAPI': { icon: 'assets/fastapi.png', color: '#009688' },
-            'Chrome DevTools': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/chrome/chrome-original.svg', color: '#4285F4' },
+            'FastAPI': { icon: 'assets/fastAPI.png', color: '#009688' },
+            'Chrome DevTools': { icon: 'assets/chromeDevTools.png', color: '#4285F4' },
             'Flask': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/flask/flask-original.svg', color: '#000000' },
             'Next.js': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/nextjs/nextjs-original.svg', color: '#000000' },
             'TailwindCSS': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-plain.svg', color: '#06B6D4' },
@@ -42,13 +42,13 @@ class GitHubPortfolio {
             'Cypress': { icon: 'https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/cypress.svg', color: '#17202C' },
             'Pytest': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/pytest/pytest-original.svg', color: '#0A9EDC' },
             'Selenium': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/selenium/selenium-original.svg', color: '#43B02A' },
-            'TestNG': { icon: 'assets/testng.png', color: '#F46800' },
+            'TestNG': { icon: 'assets/testNG.png', color: '#F46800' },
             'Playwright': { icon: 'https://playwright.dev/img/playwright-logo.svg', color: '#2EAD33' },
             'Makefile': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/cmake/cmake-original.svg', color: '#064F8C' },
             'SQL': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg', color: '#336791' },
             'Healenium': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/selenium/selenium-original.svg', color: '#FF6B6B' },
             'REST API': { icon: 'https://cdn-icons-png.flaticon.com/512/2164/2164832.png', color: '#6366F1' },
-            'REST-Assured': { icon: 'assets/rest-assured.png', color: '#6366F1' },
+            'REST-Assured': { icon: 'assets/restAssuredApi.png', color: '#6366F1' },
             'ExtentReports': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/grafana/grafana-original.svg', color: '#F46800' },
             'Hamcrest': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/junit/junit-original.svg', color: '#25A162' },
             'Jackson': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/json/json-original.svg', color: '#000000' },
@@ -56,6 +56,63 @@ class GitHubPortfolio {
             'PAM': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg', color: '#FF9800' },
             'Maven': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/maven/maven-original.svg', color: '#C71A36' },
             'PyYAML': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/yaml/yaml-original.svg', color: '#CB171E' },
+        };
+                this.techStack = {
+            'JavaScript': { badge: '[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E.svg)](https://www.javascript.com/)', color: '#F7DF1E', url: 'https://www.javascript.com/' },
+            'TypeScript': { badge: '[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6.svg)](https://www.typescriptlang.org/)', color: '#3178C6', url: 'https://www.typescriptlang.org/' },
+            'Python': { badge: '[![Python](https://img.shields.io/badge/Python-3.9+-3776AB.svg)](https://www.python.org/)', color: '#3776AB', url: 'https://www.python.org/' },
+            'Java': { badge: '[![Java](https://img.shields.io/badge/Java-17+-ED8B00.svg)](https://www.java.com/)', color: '#ED8B00', url: 'https://www.java.com/' },
+            'HTML': { badge: '[![HTML](https://img.shields.io/badge/HTML-5-E34F26.svg)](https://html.spec.whatwg.org/)', color: '#E34F26', url: 'https://html.spec.whatwg.org/' },
+            'CSS': { badge: '[![CSS](https://img.shields.io/badge/CSS-3-1572B6.svg)](https://www.w3.org/Style/CSS/)', color: '#1572B6', url: 'https://www.w3.org/Style/CSS/' },
+            'React': { badge: '[![React](https://img.shields.io/badge/React-18+-61DAFB.svg)](https://react.dev/)', color: '#61DAFB', url: 'https://react.dev/' },
+            'Vue': { badge: '[![Vue](https://img.shields.io/badge/Vue-3-4FC08D.svg)](https://vuejs.org/)', color: '#4FC08D', url: 'https://vuejs.org/' },
+            'Angular': { badge: '[![Angular](https://img.shields.io/badge/Angular-17+-DD0031.svg)](https://angular.io/)', color: '#DD0031', url: 'https://angular.io/' },
+            'Node.js': { badge: '[![Node.js](https://img.shields.io/badge/Node.js-18+-339933.svg)](https://nodejs.org/)', color: '#339933', url: 'https://nodejs.org/' },
+            'PHP': { badge: '[![PHP](https://img.shields.io/badge/PHP-8.0+-777BB4.svg)](https://www.php.net/)', color: '#777BB4', url: 'https://www.php.net/' },
+            'Ruby': { badge: '[![Ruby](https://img.shields.io/badge/Ruby-3.0+-CC342D.svg)](https://www.ruby-lang.org/)', color: '#CC342D', url: 'https://www.ruby-lang.org/' },
+            'Go': { badge: '[![Go](https://img.shields.io/badge/Go-1.20+-00ADD8.svg)](https://golang.org/)', color: '#00ADD8', url: 'https://golang.org/' },
+            'Rust': { badge: '[![Rust](https://img.shields.io/badge/Rust-Latest-CE422B.svg)](https://www.rust-lang.org/)', color: '#CE422B', url: 'https://www.rust-lang.org/' },
+            'C++': { badge: '[![C++](https://img.shields.io/badge/C++-17+-00599C.svg)](https://en.cppreference.com/)', color: '#00599C', url: 'https://en.cppreference.com/' },
+            'C#': { badge: '[![C#](https://img.shields.io/badge/C%23-11-239120.svg)](https://learn.microsoft.com/en-us/dotnet/csharp/)', color: '#239120', url: 'https://learn.microsoft.com/en-us/dotnet/csharp/' },
+            'C': { badge: '[![C](https://img.shields.io/badge/C-99-A8B9CC.svg)](https://en.cppreference.com/w/c)', color: '#A8B9CC', url: 'https://en.cppreference.com/w/c' },
+            'Swift': { badge: '[![Swift](https://img.shields.io/badge/Swift-5.0+-FA7343.svg)](https://www.swift.org/)', color: '#FA7343', url: 'https://www.swift.org/' },
+            'Kotlin': { badge: '[![Kotlin](https://img.shields.io/badge/Kotlin-1.9+-0095D5.svg)](https://kotlinlang.org/)', color: '#0095D5', url: 'https://kotlinlang.org/' },
+            'Docker': { badge: '[![Docker](https://img.shields.io/badge/Docker-Latest-2496ED.svg)](https://www.docker.com/)', color: '#2496ED', url: 'https://www.docker.com/' },
+            'Shell': { badge: '[![Shell](https://img.shields.io/badge/Shell-Bash-89E051.svg)](https://www.gnu.org/software/bash/)', color: '#89E051', url: 'https://www.gnu.org/software/bash/' },
+            'Express': { badge: '[![Express](https://img.shields.io/badge/Express-4.0+-000000.svg)](https://expressjs.com/)', color: '#000000', url: 'https://expressjs.com/' },
+            'Django': { badge: '[![Django](https://img.shields.io/badge/Django-4.0+-092E20.svg)](https://www.djangoproject.com/)', color: '#092E20', url: 'https://www.djangoproject.com/' },
+            'FastAPI': { badge: '[![FastAPI](https://img.shields.io/badge/FastAPI-Latest-009688.svg)](https://fastapi.tiangolo.com/)', color: '#009688', url: 'https://fastapi.tiangolo.com/' },
+            'Flask': { badge: '[![Flask](https://img.shields.io/badge/Flask-2.0+-000000.svg)](https://flask.palletsprojects.com/)', color: '#000000', url: 'https://flask.palletsprojects.com/' },
+            'Next.js': { badge: '[![Next.js](https://img.shields.io/badge/Next.js-13+-000000.svg)](https://nextjs.org/)', color: '#000000', url: 'https://nextjs.org/' },
+            'TailwindCSS': { badge: '[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.0+-06B6D4.svg)](https://tailwindcss.com/)', color: '#06B6D4', url: 'https://tailwindcss.com/' },
+            'Bootstrap': { badge: '[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.0+-7952B3.svg)](https://getbootstrap.com/)', color: '#7952B3', url: 'https://getbootstrap.com/' },
+            'MongoDB': { badge: '[![MongoDB](https://img.shields.io/badge/MongoDB-6.0+-47A248.svg)](https://www.mongodb.com/)', color: '#47A248', url: 'https://www.mongodb.com/' },
+            'PostgreSQL': { badge: '[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791.svg)](https://www.postgresql.org/)', color: '#336791', url: 'https://www.postgresql.org/' },
+            'GraphQL': { badge: '[![GraphQL](https://img.shields.io/badge/GraphQL-Latest-E10098.svg)](https://graphql.org/)', color: '#E10098', url: 'https://graphql.org/' },
+            'AWS': { badge: '[![AWS](https://img.shields.io/badge/AWS-Latest-FF9900.svg)](https://aws.amazon.com/)', color: '#FF9900', url: 'https://aws.amazon.com/' },
+            'Firebase': { badge: '[![Firebase](https://img.shields.io/badge/Firebase-Latest-FFCA28.svg)](https://firebase.google.com/)', color: '#FFCA28', url: 'https://firebase.google.com/' },
+            'Redis': { badge: '[![Redis](https://img.shields.io/badge/Redis-7-DC382D.svg)](https://redis.io/)', color: '#DC382D', url: 'https://redis.io/' },
+            'Nginx': { badge: '[![Nginx](https://img.shields.io/badge/Nginx-Latest-009639.svg)](https://nginx.org/)', color: '#009639', url: 'https://nginx.org/' },
+            'Jest': { badge: '[![Jest](https://img.shields.io/badge/Jest-29+-C21325.svg)](https://jestjs.io/)', color: '#C21325', url: 'https://jestjs.io/' },
+            'Cypress': { badge: '[![Cypress](https://img.shields.io/badge/Cypress-Latest-17202C.svg)](https://www.cypress.io/)', color: '#17202C', url: 'https://www.cypress.io/' },
+            'Pytest': { badge: '[![pytest](https://img.shields.io/badge/pytest-Latest-0A9EDC.svg)](https://pytest.org/)', color: '#0A9EDC', url: 'https://pytest.org/' },
+            'Selenium': { badge: '[![Selenium](https://img.shields.io/badge/Selenium-4.0+-43B02A.svg)](https://www.selenium.dev/)', color: '#43B02A', url: 'https://www.selenium.dev/' },
+            'TestNG': { badge: '[![TestNG](https://img.shields.io/badge/TestNG-7.0+-F46800.svg)](https://testng.org/)', color: '#F46800', url: 'https://testng.org/' },
+            'Playwright': { badge: '[![Playwright](https://img.shields.io/badge/Playwright-Latest-2EAD33.svg)](https://playwright.dev/)', color: '#2EAD33', url: 'https://playwright.dev/' },
+            'Makefile': { badge: '[![Makefile](https://img.shields.io/badge/Makefile-Build-064F8C.svg)](https://www.gnu.org/software/make/)', color: '#064F8C', url: 'https://www.gnu.org/software/make/' },
+            'SQL': { badge: '[![SQL](https://img.shields.io/badge/SQL-Database-336791.svg)](https://en.wikipedia.org/wiki/SQL)', color: '#336791', url: 'https://en.wikipedia.org/wiki/SQL' },
+            'Healenium': { badge: '[![Healenium](https://img.shields.io/badge/Healenium-Latest-FF6B6B.svg)](https://healenium.io/)', color: '#FF6B6B', url: 'https://healenium.io/' },
+            'Requests': { badge: '[![Requests](https://img.shields.io/badge/Requests-HTTP-6366F1.svg)](https://requests.readthedocs.io/)', color: '#6366F1', url: 'https://requests.readthedocs.io/' },
+            'API': { badge: '[![API](https://img.shields.io/badge/API-Testing-orange.svg)](https://restfulapi.net/)', color: '#FF9800', url: 'https://restfulapi.net/' },
+            'REST API': { badge: '[![REST API](https://img.shields.io/badge/REST-API-6366F1.svg)](https://restfulapi.net/)', color: '#6366F1', url: 'https://restfulapi.net/' },
+            'REST-Assured': { badge: '[![REST-Assured](https://img.shields.io/badge/REST--Assured-Testing-6366F1.svg)](https://rest-assured.io/)', color: '#6366F1', url: 'https://rest-assured.io/' },
+            'ExtentReports': { badge: '[![ExtentReports](https://img.shields.io/badge/ExtentReports-Reporting-F46800.svg)](https://www.extentreports.com/)', color: '#F46800', url: 'https://www.extentreports.com/' },
+            'Hamcrest': { badge: '[![Hamcrest](https://img.shields.io/badge/Hamcrest-Matchers-25A162.svg)](http://hamcrest.org/)', color: '#25A162', url: 'http://hamcrest.org/' },
+            'Jackson': { badge: '[![Jackson](https://img.shields.io/badge/Jackson-JSON-000000.svg)](https://github.com/FasterXML/jackson)', color: '#000000', url: 'https://github.com/FasterXML/jackson' },
+            'Apache Guacamole': { badge: '[![Apache Guacamole](https://img.shields.io/badge/Apache-Guacamole-4CAF50.svg)](https://guacamole.apache.org/)', color: '#4CAF50', url: 'https://guacamole.apache.org/' },
+            'PAM': { badge: '[![PAM](https://img.shields.io/badge/PAM-Authentication-FF9800.svg)](https://linux.die.net/man/8/pam)', color: '#FF9800', url: 'https://linux.die.net/man/8/pam' },
+            'Maven': { badge: '[![Maven](https://img.shields.io/badge/Maven-Build-C71A36.svg)](https://maven.apache.org/)', color: '#C71A36', url: 'https://maven.apache.org/' },
+            'PyYAML': { badge: '[![PyYAML](https://img.shields.io/badge/PyYAML-YAML-CB171E.svg)](https://pyyaml.org/)', color: '#CB171E', url: 'https://pyyaml.org/' },
         };
         this.init();
     }
@@ -214,7 +271,7 @@ class GitHubPortfolio {
     }
 
     createRepoCard(repo) {
-        const techStack = this.getTechStack(repo.languages, repo.readmeContent);
+        const techStackBadges = this.getTechStackBadges(repo.languages, repo.readmeContent);
         const readmeInfo = this.extractReadmeInfo(repo.readmeContent);
         const enhancedInfo = this.enhanceRepoInfo(repo, readmeInfo);
     
@@ -226,8 +283,8 @@ class GitHubPortfolio {
                     ${enhancedInfo.status ? `<span class="project-status ${enhancedInfo.status.toLowerCase()}">${enhancedInfo.status}</span>` : ''}
                 </div>
                 <p class="repo-description">${repo.description || enhancedInfo.description || 'No description available'}</p>
-                <div class="tech-stack">
-                    ${techStack}
+                <div class="tech-badges">
+                    ${techStackBadges}
                 </div>
             </div>
         `;
@@ -460,6 +517,31 @@ class GitHubPortfolio {
             // If icon missing, show tech name as text for manual review
             return `<span class="tech-missing" title="Add icon for ${tech}">${tech}</span>`;
         }).join('');
+    }
+    
+        getTechStackBadges(languages, readmeContent) {
+        const langTech = Object.keys(languages || {}).slice(0, 3);
+        const readmeTech = this.extractTechFromReadme(readmeContent || '').slice(0, 3);
+        const allTech = [...new Set([...langTech, ...readmeTech])].slice(0, 5);
+    
+        if (allTech.length === 0) return '';
+    
+        return allTech.map(tech => {
+            const techData = this.techStack[tech];
+            if (techData && techData.badge) {
+                // Extract image URL and link URL from markdown badge
+                // Format: [![Name](image-url)](link-url)
+                const imageMatch = techData.badge.match(/!\[.*?\]\((.*?)\)/);
+                const linkMatch = techData.badge.match(/\]\((.*?)\)$/);
+                
+                if (imageMatch && linkMatch) {
+                    const imageUrl = imageMatch[1];
+                    const linkUrl = linkMatch[1];
+                    return `<a href="${linkUrl}" target="_blank"><img src="${imageUrl}" alt="${tech}" class="badge-img"></a>`;
+                }
+            }
+            return '';
+        }).filter(badge => badge !== '').join('');
     }
 
     getMeaningfulStats(repo, readmeInfo) {

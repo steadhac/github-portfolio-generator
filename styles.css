@@ -139,6 +139,24 @@ main {
     align-items: center;
 }
 
+.tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.tech-badges a {
+    display: inline-block;
+}
+
+.tech-badges .badge-img {
+    height: 20px;
+    display: inline-block;
+}
+
 .repo-header {
     margin-bottom: 1rem;
 }
