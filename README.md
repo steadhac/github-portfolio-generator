@@ -1,6 +1,6 @@
 # GitHub Portfolio Generator
 
-A modern, responsive portfolio page that automatically showcases your GitHub repositories with tech stack detection and clean icon display.
+A modern, responsive portfolio page that automatically showcases your GitHub repositories with tech stack detection and shield.io badges.
 
 ## 🚀 Quick Start
 
@@ -25,17 +25,16 @@ A modern, responsive portfolio page that automatically showcases your GitHub rep
 
 - **🖼️ Clean, Minimalist Design**: Simple layout with a modern gradient background
 - **🔍 Tech Stack Detection**: Automatically detects languages and frameworks from your repos and README files
-- **🛠️ Tech Icons with Tooltips**: Displays SVG icons for each technology, with the tech name shown on hover
-- **🔤 Tech Name Fallback**: If an icon is not found, the name of the tech stack is presented as text for easy identification and manual review
+- **🛡️ Shield.io Tech Badges**: Clean, modern badge-style tech stack display with clickable links to documentation
 - **📱 Responsive**: Works seamlessly on desktop, tablet, and mobile
 - **⚡ No Build Tools Needed**: Pure HTML, CSS, and JavaScript—just clone and run
 
 ## 🛠️ Supported Technologies
 
 **Languages:** JavaScript, TypeScript, Python, Java, HTML, CSS, Go, Rust, C++, C#, Swift, Kotlin, PHP, Ruby, Shell  
-**Frameworks & Libraries:** React, Vue, Angular, Next.js, Express, Django, Flask, TailwindCSS, Bootstrap  
-**Testing:** Pytest, Jest, Mocha, Cypress, Selenium, Playwright, Healium, TestNG, JUnit, Vitest  
-**Databases & Tools:** MongoDB, PostgreSQL, Redis, GraphQL, Docker, Kubernetes, AWS, Firebase, Nginx, Webpack, Vite, ESLint, Prettier, Storybook, Swagger
+**Frameworks & Libraries:** React, Vue, Angular, Next.js, Express, Django, Flask, FastAPI, TailwindCSS, Bootstrap  
+**Testing:** Pytest, Jest, Mocha, Cypress, Selenium, Playwright, Healium, TestNG, JUnit, Vitest, REST-Assured  
+**Databases & Tools:** MongoDB, PostgreSQL, Redis, GraphQL, Docker, AWS, Firebase, Nginx, MySQL
 
 ## 🎯 Usage
 
@@ -45,29 +44,51 @@ A modern, responsive portfolio page that automatically showcases your GitHub rep
 3. Open `index.html` in your browser
 4. Add `?user=yourusername` to the URL
 
+### Tech Stack Badges
+
+The portfolio displays technology stack as shield.io badges instead of icon images. Each badge is clickable and links to the official documentation for that technology.
+
+**Features:**
+- Clean, modern badge-style display
+- Clickable badges that link to official documentation
+- Auto-detected from repository languages and README content
+- Responsive layout that wraps on smaller screens
+
 ### Customization
 
-- **Add Tech Icons:**  
-  Edit the `techIcons` object in `script.js` to add new techs and SVG URLs.
-- **Change Colors:**  
-  Edit the gradient in `styles.css`.
-- **Increase Repository Count:**  
-  Edit the `per_page` value in `script.js`.
+- **Add Tech Badges:**  
+  Edit the `techStack` object in `script.js` to add new technologies and badge URLs.
+  
+  Example format:
+  ```javascript
+  'YourTech': { 
+      badge: '[![YourTech](https://img.shields.io/badge/YourTech-Version-Color.svg)](https://docs-url)', 
+      color: '#HexColor', 
+      url: 'https://official-link' 
+  }
+
+## 🎯 Usage
+
+### Local Development
+1. Clone the repository
+2. Run a local server (e.g., `python3 -m http.server`)
+3. Open `index.html` in your browser
+4. Add `?user=yourusername` to the URL
 
 ## 📁 Project Structure
 ``` text
 github-portfolio-generator/
-├── index.html # Main portfolio page
-├── styles.css # Styling
-├── script.js # Core logic
-├── assets/ # Tech stack icons and images
+├── [index.html](http://_vscodecontentref_/0) # Main portfolio page
+├── [styles.css](http://_vscodecontentref_/1) # Styling
+├── [script.js](http://_vscodecontentref_/2) # Core logic
+├── assets/ # Tech stack images
 │ ├── testng.png
 │ ├── fastapi.png
 │ └── ... (other images)
 ├── demo/ # Demo mode data and mock files
 │ ├── demo-data.js
 │ └── ... (other demo files)
-├── README.md # Project documentation
+├── [README.md](http://_vscodecontentref_/3) # Project documentation
 ```
 
 ## 🔧 API Features
