@@ -164,39 +164,14 @@ class GitHubPortfolio {
                 }
                 throw new Error('User not found');
             }
-            
             const profile = await response.json();
-            
+            this.stats.publicRepos = profile.public_repos;
+            this.stats.followers = profile.followers;
+
             document.getElementById('profile-name').textContent = profile.name || profile.login;
             document.getElementById('profile-bio').textContent = profile.bio || 'GitHub Developer';
             document.getElementById('repo-count').textContent = profile.public_repos;
-            
-            const reposResponse = await this.makeRequest(`https://api.github.com/users/${this.username}/repos?per_page=100`);
-            if (reposResponse.ok) {
-                const allRepos = await reposResponse.json();
-                if (Array.isArray(allRepos)) {
-                    const totalStars = allRepos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
-                    document.getElementById('total-stars').textContent = totalStars;
-                } else {
-                    document.getElementById('total-stars').textContent = 0;
-                }
-            } else {
-                document.getElementById('total-stars').textContent = 0;
-            }
-            
-            const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
-            try {
-                const commitsResponse = await this.makeRequest(`https://api.github.com/search/commits?q=author:${this.username}+committer-date:>${thirtyDaysAgo}&per_page=1`);
-                if (commitsResponse.ok) {
-                    const commitsData = await commitsResponse.json();
-                    document.getElementById('total-commits').textContent = commitsData.total_count || 0;
-                } else {
-                    document.getElementById('total-commits').textContent = 0;
-                }
-            } catch {
-                document.getElementById('total-commits').textContent = 0;
-            }
-            
+
             document.getElementById('github-link').href = `https://github.com/${this.username}`;
             document.title = `${profile.name || profile.login} - GitHub Portfolio`;
         } catch (error) {
@@ -206,52 +181,38 @@ class GitHubPortfolio {
 
     async loadRepositories() {
         try {
-            const response = await this.makeRequest(`https://api.github.com/users/${this.username}/repos?sort=updated&per_page=50`);
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-            }
-            
+            const response = await this.makeRequest(`https://api.github.com/users/${this.username}/repos?per_page=100`);
+            if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             const repos = await response.json();
-            if (!Array.isArray(repos)) {
-                throw new Error('Invalid repository data received');
-            }
-            
+            if (!Array.isArray(repos)) throw new Error('Invalid repository data received');
+
+            // Stats calculation
+            this.stats.totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+            this.stats.totalForks = repos.reduce((sum, repo) => sum + repo.forks_count, 0);
+            this.stats.topLanguages = this.getTopLanguages(repos);
+
+            // Render stats section
+            this.renderStats();
+
+            // Render repositories (limit to 12 for display)
             const reposWithData = await Promise.all(
                 repos.slice(0, 12).map(async repo => {
+                    const languages = {};
+                    let readmeContent = '';
                     try {
-                        const languages = {};
-                        let readmeContent = '';
-                        
-                        // Try to get languages, but don't fail if it doesn't work
-                        try {
-                            const langResponse = await this.makeRequest(repo.languages_url);
-                            if (langResponse.ok) {
-                                const langData = await langResponse.json();
-                                Object.assign(languages, langData);
-                            }
-                        } catch (e) {
-                            console.warn('Failed to load languages for', repo.name);
+                        const langResponse = await this.makeRequest(repo.languages_url);
+                        if (langResponse.ok) Object.assign(languages, await langResponse.json());
+                    } catch {}
+                    try {
+                        const readmeResponse = await this.makeRequest(`https://api.github.com/repos/${repo.full_name}/readme`);
+                        if (readmeResponse.ok) {
+                            const readme = await readmeResponse.json();
+                            readmeContent = atob(readme.content);
                         }
-                        
-                        // Try to get README, but don't fail if it doesn't work
-                        try {
-                            const readmeResponse = await this.makeRequest(`https://api.github.com/repos/${repo.full_name}/readme`);
-                            if (readmeResponse.ok) {
-                                const readme = await readmeResponse.json();
-                                readmeContent = atob(readme.content);
-                            }
-                        } catch (e) {
-                            console.warn('Failed to load README for', repo.name);
-                        }
-                        
-                        return { ...repo, languages, readmeContent };
-                    } catch (error) {
-                        console.warn('Error processing repo', repo.name, error);
-                        return { ...repo, languages: {}, readmeContent: '' };
-                    }
+                    } catch {}
+                    return { ...repo, languages, readmeContent };
                 })
             );
-            
             this.renderRepositories(reposWithData);
         } catch (error) {
             console.error('Failed to load repositories:', error);
@@ -259,6 +220,44 @@ class GitHubPortfolio {
         }
     }
 
+    getTopLanguages(repos) {
+        const langCounts = {};
+        repos.forEach(repo => {
+            if (repo.language) {
+                langCounts[repo.language] = (langCounts[repo.language] || 0) + 1;
+            }
+        });
+        return Object.entries(langCounts)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 5)
+            .map(([lang, count]) => ({ name: lang, count }));
+    }
+
+    renderStats() {
+        let statsHTML = `
+        <section class="portfolio-stats">
+            <h2>GitHub Stats</h2>
+            <div class="stats-grid">
+                <div class="stat-card"><h3>${this.stats.publicRepos}</h3><p>Repositories</p></div>
+                <div class="stat-card"><h3>${this.stats.totalStars}</h3><p>Total Stars</p></div>
+                <div class="stat-card"><h3>${this.stats.totalForks}</h3><p>Total Forks</p></div>
+                <div class="stat-card"><h3>${this.stats.followers}</h3><p>Followers</p></div>
+            </div>
+            <div class="languages">
+                <h3>Top Languages</h3>
+                <ul class="language-list">
+                    ${this.stats.topLanguages.map(lang => `<li>${lang.name} <span>(${lang.count})</span></li>`).join('')}
+                </ul>
+            </div>
+        </section>
+        `;
+        // Insert before the repo grid
+        const repoGrid = document.getElementById('repo-grid');
+        if (repoGrid) {
+            repoGrid.insertAdjacentHTML('beforebegin', statsHTML);
+        }
+    }
+    
     renderRepositories(repos) {
         const grid = document.getElementById('repo-grid');
         
