@@ -1,6 +1,14 @@
 class GitHubPortfolio {
     constructor() {
         this.username = 'steadhac';
+        this.stats = {
+                publicRepos: 0,
+                totalStars: 0,
+                topLanguages: []
+            };
+            
+            this.demoMode = true;
+    
         this.techIcons = {
             'JavaScript': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg', color: '#F7DF1E' },
             'TypeScript': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg', color: '#3178C6' },
@@ -122,24 +130,30 @@ class GitHubPortfolio {
         return params.get('user') || 'steadhac';
     }
 
-    async init() {
-        if (!this.username) {
-            this.loadDemoData();
-            return;
-        }
-        
-        try {
-            await this.loadProfile();
-            // Only load repositories if we're not in demo mode
-            if (!this.demoMode) {
-                await this.loadRepositories();
-            }
-        } catch (error) {
-            console.error('Error loading GitHub data:', error);
-            this.loadDemoData();
-        }
+    
+async init() {
+    // Only load repositories if we're not in demo mode
+    if (!this.demoMode) {
+        await this.loadRepositories();
     }
-
+    try {
+        console.log('Fetching profile for:', this.username);
+        const response = await this.makeRequest(`https://api.github.com/users/${this.username}`);
+        console.log('GitHub API response:', response);
+        if (!response.ok) {
+            if (response.status === 403) {
+                this.loadDemoData();
+                return;
+            }
+            throw new Error('User not found');
+        }
+        const profile = await response.json();
+        // ...rest of your code...
+    } catch (error) {
+        console.error('Error loading GitHub data:', error);
+        this.loadDemoData();
+    }
+}
     async makeRequest(url, options = {}) {
         const defaultOptions = {
             method: 'GET',
@@ -166,7 +180,6 @@ class GitHubPortfolio {
             }
             const profile = await response.json();
             this.stats.publicRepos = profile.public_repos;
-            this.stats.followers = profile.followers;
 
             document.getElementById('profile-name').textContent = profile.name || profile.login;
             document.getElementById('profile-bio').textContent = profile.bio || 'GitHub Developer';
@@ -185,15 +198,16 @@ class GitHubPortfolio {
             if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             const repos = await response.json();
             if (!Array.isArray(repos)) throw new Error('Invalid repository data received');
-
+    
             // Stats calculation
             this.stats.totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
             this.stats.totalForks = repos.reduce((sum, repo) => sum + repo.forks_count, 0);
             this.stats.topLanguages = this.getTopLanguages(repos);
-
+            this.stats.publicRepos = repos.length;
+    
             // Render stats section
             this.renderStats();
-
+    
             // Render repositories (limit to 12 for display)
             const reposWithData = await Promise.all(
                 repos.slice(0, 12).map(async repo => {
@@ -216,7 +230,7 @@ class GitHubPortfolio {
             this.renderRepositories(reposWithData);
         } catch (error) {
             console.error('Failed to load repositories:', error);
-            this.showError(`Failed to load repositories: ${error.message}`);
+            this.loadDemoData();
         }
     }
 
@@ -237,16 +251,12 @@ class GitHubPortfolio {
         let statsHTML = `
         <section class="portfolio-stats">
             <h2>GitHub Stats</h2>
-            <div class="stats-grid">
-                <div class="stat-card"><h3>${this.stats.publicRepos}</h3><p>Repositories</p></div>
-                <div class="stat-card"><h3>${this.stats.totalStars}</h3><p>Total Stars</p></div>
-                <div class="stat-card"><h3>${this.stats.totalForks}</h3><p>Total Forks</p></div>
-                <div class="stat-card"><h3>${this.stats.followers}</h3><p>Followers</p></div>
-            </div>
             <div class="languages">
                 <h3>Top Languages</h3>
                 <ul class="language-list">
-                    ${this.stats.topLanguages.map(lang => `<li>${lang.name} <span>(${lang.count})</span></li>`).join('')}
+                    ${this.stats.topLanguages.map(lang => `
+                        <li class="language-badge">${lang.name} <span>(${lang.count})</span></li>
+                    `).join('')}
                 </ul>
             </div>
         </section>

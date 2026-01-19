@@ -319,6 +319,40 @@ main {
     align-items: center;
 }
 
+.language-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.language-badge {
+    background: rgba(255,255,255,0.85);
+    color: #8B5CF6;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 2px 6px rgba(139, 92, 246, 0.08);
+    border: 1px solid #e0e0e0;
+    display: inline-block;
+    transition: background 0.2s, color 0.2s;
+}
+
+.language-badge span {
+    color: #6366F1;
+    font-size: 0.9em;
+    margin-left: 4px;
+}
+
+.language-badge:hover {
+    background: #8B5CF6;
+    color: #fff;
+}
 /* Style 1: Current pill style */
 .tech-tag {
     display: inline-flex;
