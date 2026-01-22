@@ -8,7 +8,6 @@ class GitHubPortfolio {
             };
             
             this.demoMode = true;
-    
         this.techIcons = {
             'JavaScript': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg', color: '#F7DF1E' },
             'TypeScript': { icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg', color: '#3178C6' },
@@ -132,26 +131,38 @@ class GitHubPortfolio {
 
     
 async init() {
-    // Only load repositories if we're not in demo mode
-    if (!this.demoMode) {
-        await this.loadRepositories();
-    }
     try {
         console.log('Fetching profile for:', this.username);
+        await this.loadProfile();
+        await this.loadRepositories();
+    } catch (error) {
+        console.error('Error loading GitHub data:', error);
+        this.loadDemoData();
+    }
+}
+
+async loadProfile() {
+    try {
         const response = await this.makeRequest(`https://api.github.com/users/${this.username}`);
-        console.log('GitHub API response:', response);
         if (!response.ok) {
             if (response.status === 403) {
-                this.loadDemoData();
-                return;
+                throw new Error('Rate limited');
             }
             throw new Error('User not found');
         }
         const profile = await response.json();
-        // ...rest of your code...
+        this.stats.publicRepos = profile.public_repos;
+
+        document.getElementById('profile-name').textContent = profile.name || profile.login;
+        document.getElementById('profile-bio').textContent = profile.bio || 'GitHub Developer';
+        document.getElementById('repo-count').textContent = profile.public_repos;
+
+        document.getElementById('github-link').href = `https://github.com/${this.username}`;
+        document.title = `${profile.name || profile.login} - GitHub Portfolio`;
+        this.hideZeroStats(); 
     } catch (error) {
-        console.error('Error loading GitHub data:', error);
-        this.loadDemoData();
+        console.error('Error loading profile:', error);
+        throw error;
     }
 }
     async makeRequest(url, options = {}) {
@@ -187,6 +198,7 @@ async init() {
 
             document.getElementById('github-link').href = `https://github.com/${this.username}`;
             document.title = `${profile.name || profile.login} - GitHub Portfolio`;
+            this.hideZeroStats(); 
         } catch (error) {
             this.loadDemoData();
         }
@@ -247,27 +259,16 @@ async init() {
             .map(([lang, count]) => ({ name: lang, count }));
     }
 
-    renderStats() {
-        let statsHTML = `
-        <section class="portfolio-stats">
-            <h2>GitHub Stats</h2>
-            <div class="languages">
-                <h3>Top Languages</h3>
-                <ul class="language-list">
-                    ${this.stats.topLanguages.map(lang => `
-                        <li class="language-badge">${lang.name} <span>(${lang.count})</span></li>
-                    `).join('')}
-                </ul>
-            </div>
-        </section>
-        `;
+        renderStats() {
+        let statsHTML = `<section class="portfolio-stats"></section>`;
+        
         // Insert before the repo grid
         const repoGrid = document.getElementById('repo-grid');
         if (repoGrid) {
             repoGrid.insertAdjacentHTML('beforebegin', statsHTML);
         }
     }
-    
+
     renderRepositories(repos) {
         const grid = document.getElementById('repo-grid');
         
@@ -617,6 +618,26 @@ async init() {
         return date.toLocaleDateString('en-US', { 
             year: 'numeric', 
             month: 'short'
+        });
+    }
+
+    hideZeroStats() {
+        // Hide stats that are 0
+        const statElements = [
+            { id: 'total-stars', label: 'Total Stars' },
+            { id: 'total-commits', label: 'Commits (30d)' },
+            { id: 'total-forks', label: 'Total Forks' }
+        ];
+    
+        statElements.forEach(stat => {
+            const element = document.getElementById(stat.id);
+            if (element && element.textContent.trim() === '0') {
+                // Hide the parent bubble/container
+                const parent = element.closest('[class*="stat"]') || element.parentElement;
+                if (parent) {
+                    parent.style.display = 'none';
+                }
+            }
         });
     }
 
